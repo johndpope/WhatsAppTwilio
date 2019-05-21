@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var twilio = require('twilio');
 var pg = require('pg');
 
 var app = express();
@@ -44,18 +43,19 @@ app.post('/update', function(req, res) {
     });
 });
 app.post("/chatbotJoin", function(req, res){
+
     console.log("My request-->"+req.body.firstName);
     var request = apiapp.textRequest(req.body.firstName, {
         sessionId: '123123'
     });
+    console.log('Request send-->'+request);
     request.on('response', function(response) {
-        console.log(response.result.fulfillment.speech);
-        alert(response.result.fulfillment.speech);
-        //res.send(response);
+        console.log(response);
+        res.send(response);
     });
     request.on('error', function(error) {
         console.log(error);
-        //res.send(error);
+        res.send(error);
     });
     request.end();
 

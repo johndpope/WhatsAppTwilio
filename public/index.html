@@ -10,6 +10,53 @@
     <style>
         body {
             padding-top: 60px;
+            font-family: Helvetica, Arial, sans-serif;
+            background:url("https://i.pinimg.com/236x/40/39/e0/4039e0f1ef08b7b965bacb4641a7af49--wallpaper-whatsapp-whatsapp-background.jpg ");
+        }
+        textarea{
+            border-radius:10px;
+            bottom:5vh;
+            position:absolute ;
+            width:80vw;
+            font-size:15px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        a{
+            position:absolute ;
+            bottom:5vh;
+            right:02vw;
+        }
+        button{
+            border-radius:50%;
+            height:12vw;
+            width:12vw;
+            border:none;
+            background-color:teal;
+            font-family:inherit ;
+            padding:3px;
+        }
+        button:active{
+            background-color:seagreen;
+        }
+        #i1{
+            width:50vw;
+            height:50vw;
+            posiotion:absolute ;
+        }
+        p{
+            color:white;
+        }
+        #i2{
+            height:10vw;
+            width:10vw;
+            position:relative ;
+            left:3px;
+            filter:invert(100%);
+        }
+        *{
+            transiton:0.5s ease;
+            outline:none;
+            /*credits to qyther*/
         }
     </style>
     <script>
@@ -41,6 +88,7 @@
                         dataType: "json",
                         success: function(data) {
                             $("#firstName").val("");
+                            $("#idRespuesta").val(data.result.fulfillment.speech)
                         },
                         error: function(err) {
                             errorMessage.text(err.responseJSON.error);
@@ -51,6 +99,11 @@
             });
         });
 
+    </script>
+    <script>
+        function ok(){
+            window.location="https://api.whatsapp.com/send?phone=+34605740000&text=I'm%20interested%20in%20your%20car%20for%20sale";
+        }
     </script>
 </head>
 <body>
@@ -75,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="firstName">Respuestas</label>
-                        <input type="text" class="form-control" id="idRespuesta" placeholder="Respuesta" required>
+                        <input type="text" class="form-control" id="idRespuesta" placeholder="Respuesta">
                     </div>
                 </div>
                 <div class="panel-footer">
@@ -92,6 +145,9 @@
                 </div>
             </div>
         </form>
+        <!--<p align="center"><img id="i1"src="http://www.stickpng.com/assets/images/580b57fcd9996e24bc43c543.png"><br>Send text directly to WhatAapp</p>
+        <textarea placeholder="Send text directly to WhatsApp"></textarea>
+        <a><button onclick="ok()"><img id ="i2"src="https://image.flaticon.com/icons/png/512/60/60525.png"></button></a>-->
     </div>
 </body>
 </html>
