@@ -12,7 +12,6 @@
     "express": "^4.17.0",
     "node": "^12.2.0",
     "pg": "^4.5.7",
-    "twilio": "^3.31.0",
     "twilio-heroku": "^0.3.2"
   },
   "engines": {
