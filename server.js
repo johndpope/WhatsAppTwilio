@@ -4,7 +4,22 @@ var pg = require('pg');
 
 var app = express();
 var apiai = require('apiai');
+var twilio = require('twilio');
 var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
+
+
+var accountSid = 'AC67968749065aa4c24a598fb476e3ee1e'; // Your Account SID from www.twilio.com/console
+var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8';   // Your Auth Token from www.twilio.com/console
+
+
+var client = new twilio(accountSid, authToken);
+
+client.messages.create({
+    body: 'Hello from Node',
+    to: '+34626561876',  // Text this number
+    from: '+34960160635' // From a valid Twilio number
+})
+.then((message) => console.log(message.sid));
 
 app.set('port', process.env.PORT || 5000);
 
