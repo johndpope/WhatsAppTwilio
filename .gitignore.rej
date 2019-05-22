@@ -1,0 +1,6 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -2,3 +3,4 @@
+++<<<<<<< HEAD
+ +node_modules/unpipe/LICENSE
+ +node_modules/unpipe/HISTORY.md
+ +node_modules/type-is/package.json
