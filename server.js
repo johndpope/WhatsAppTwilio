@@ -5,6 +5,10 @@ var pg = require('pg');
 var app = express();
 var apiai = require('apiai');
 var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
+const http = require('http');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+const TIE = require('@artificialsolutions/tie-api-client');
+
 var twilio = require('twilio');
 
 
