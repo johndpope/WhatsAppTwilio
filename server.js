@@ -12,17 +12,17 @@ var twilio = require('twilio');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-var accountSid = 'AC67968749065aa4c24a598fb476e3ee1e';// Your Account SID from www.twilio.com/console
-var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8';  // Your Auth Token from www.twilio.com/console
-const client = require('twilio')(accountSid, authToken);
+var accountSid = 'AC67968749065aa4c24a598fb476e3ee1e'; // Your Account SID from www.twilio.com/console
+var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8'; // Your Auth Token from www.twilio.com/console
 app.set('port', process.env.PORT || 5000);
+const client = require('twilio')(accountSid, authToken);
 client.messages
-      .create({
-         from: 'whatsapp:+34960160635',
-         body: 'Hello there!',
-         to: 'whatsapp:+34689603272'
-       })
-      .then(message => console.log(message.sid));
+    .create({
+        from: 'whatsapp:+34960160635',
+        body: 'Hello there!',
+        to: 'whatsapp:+34689603272'
+    })
+    .then(message => console.log(message.sid));
 /*var client = new twilio(accountSid, authToken);*/
 
 /*client.messages.create({
