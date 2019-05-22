@@ -17,6 +17,6 @@
     "react-scripts": "^3.0.1"
   },
   "engines": {
-    "node": "^0.12.7"
+    "node": "^8.5.0"
   }
 }
