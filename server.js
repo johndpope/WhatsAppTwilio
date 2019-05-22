@@ -23,8 +23,8 @@ client.messages
         from: 'whatsapp:+34960160635',
         body: 'Hello there!',
         to: 'whatsapp:+34689603272'
-    })
-    .then(message => console.log(message.sid));
+    });
+
 /*var client = new twilio(accountSid, authToken);*/
 
 /*client.messages.create({
