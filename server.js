@@ -5,6 +5,7 @@ var pg = require('pg');
 var app = express();
 var apiai = require('apiai');
 var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
+var twilio = reqire('twilio');
 
 app.set('port', process.env.PORT || 5000);
 
