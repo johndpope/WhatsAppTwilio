@@ -13,8 +13,7 @@
     "express": "^4.17.0",
     "pg": "^4.5.7",
     "twilio": "^3.31.0",
-    "twilio-heroku": "^0.3.2",
-    "react-scripts": "^3.0.1"
+    "twilio-heroku": "^0.3.2"
   },
   "engines": {
     "node": "^8.5.0"
