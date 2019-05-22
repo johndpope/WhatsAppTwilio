@@ -16,7 +16,7 @@ var accountSid = 'AC67968749065aa4c24a598fb476e3ee1e';// Your Account SID from w
 var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8';  // Your Auth Token from www.twilio.com/console
 
 var client = new twilio(accountSid, authToken);
-//app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 5000);
 /*client.messages.create({
     body: 'Hello from Node',
     to: '+12345678901',  // Text this number
@@ -24,7 +24,7 @@ var client = new twilio(accountSid, authToken);
 })
 .then((message) => console.log(message.sid));*/
 
-app.post('/update', function(req, res) {
+/*app.post('/update', function(req, res) {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
@@ -72,7 +72,7 @@ app.post("/chatbotJoin", function(req, res){
     });
     request.end();
 
-});
+});*/
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
