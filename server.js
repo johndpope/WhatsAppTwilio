@@ -12,7 +12,7 @@ var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
 var qs = require('qs');
 var assert = require('assert');
 
-
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
@@ -53,6 +53,18 @@ app.post('/', (req, res) => {
     console.log("--------------------------------------------------------------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
+  });
+  app.post('/message', (req, res) => {
+    console.log("$$-----------------------------------------------------------------------------------------------------------$$$");
+    console.log(req.body);
+    console.log(req.body.From);
+    console.log(req.body.Body);
+    console.log("$$$$-------------------------------------------------------------------------------------------------------------$$$");
+    res.send(`<Response>
+        <Message>
+        Hello
+        </Message>
+        </Response>`)
   });
 //app.post('/callback', function(req, res) {
     /*pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
