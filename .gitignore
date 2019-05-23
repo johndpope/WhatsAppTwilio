@@ -3663,3 +3663,14 @@ node_modules/pg-types/index.js
 node_modules/pg-types/README.md
 node_modules/form-data/README.md.bak
 node_modules/node/bin/node.exe
+node_modules/json/package.json
+node_modules/json/LICENSE.txt
+node_modules/json/.npmignore
+node_modules/json/.gitmodules
+node_modules/.bin/json
+node_modules/json/man/man1/json.1
+node_modules/json/README.md
+node_modules/json/CHANGES.md
+node_modules/.bin/json.cmd
+node_modules/json/lib/json.js
+node_modules/json/.jshintrc
