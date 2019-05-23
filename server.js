@@ -40,32 +40,26 @@ client.messages
 .then((message) => console.log(message.sid));*/
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
-    twiml.message('The Robots are coming! Head for the hills!');
-    console.log("-----------------------------------------------------------------------------------------------------------------");
+    console.log("---------------------------------------------------------");
     console.log(req.body);
     req.on('end', function() {
         var data = qs.parse(body);
         var jsonString = json.stringify(data);  
         var jsonDataObject = json.parse(jsonString);
-    
-        // log the received message
-        console.log(jsonDataObject.Body);
+        console.log("SmsMessageSid "+jsonDataObject.Body.SmsMessageSid);
+        console.log("From:" +jsonDataObject.Body.From);
+        console.log("MessageSid "+jsonDataObject.Body.MessageSid);
+        var message = jsonDataObject.Body.body;
+        console.log("Message" + message);
+        if (message == ":)"){
+            twiml.message(':)');    
+        }else{
+            twiml.message(':(');
+        }
       });
-    console.log("--------------------------------------------------------------------------------------------------------------");
+    console.log("-----------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
-  });
-  app.post('/message', (req, res) => {
-    console.log("$$-----------------------------------------------------------------------------------------------------------$$$");
-    console.log(json.stringify(req));
-    console.log(req.body.From);
-    console.log(req.body.Body);
-    console.log("$$$$-------------------------------------------------------------------------------------------------------------$$$");
-    res.send(`<Response>
-        <Message>
-        Hello
-        </Message>
-        </Response>`)
   });
 //app.post('/callback', function(req, res) {
     /*pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
