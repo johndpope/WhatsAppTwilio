@@ -36,10 +36,18 @@ client.messages
     from: '+03468960' // From a valid Twilio number
 })
 .then((message) => console.log(message.sid));*/
-app.post('/sms', (req, res) => {
+app.post('/callback', (req, res) => {
     const twiml = new MessagingResponse();
   
     twiml.message('The Robots are coming! Head for the hills!');
+  
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+  });
+  app.post('/', (req, res) => {
+    const twiml = new MessagingResponse();
+  
+    twiml.message('The Robots are coming! Head for the hillss!');
   
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
