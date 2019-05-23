@@ -35,17 +35,15 @@ client.messages
     from: '+03468960' // From a valid Twilio number
 })
 .then((message) => console.log(message.sid));*/
-exports.handler = function(context, event, callback) {
-    let twiml = new Twilio.twiml.MessagingResponse();
-    twiml.message("Hello World");
-    callback(null, twiml);
-};
-app.post('/callback', function(req, res) {
-    console.log("-----------------------------------------------");
-    console.log(req);
-    console.log("-----------------------------------------------");
-    console.log(res);
-    console.log("-----------------------------------------------");
+app.post('/sms', (req, res) => {
+    const twiml = new MessagingResponse();
+  
+    twiml.message('The Robots are coming! Head for the hills!');
+  
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+  });
+//app.post('/callback', function(req, res) {
     /*pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
@@ -74,7 +72,7 @@ app.post('/callback', function(req, res) {
                 }
             }
         );
-    });*/
+    });
 });/*
 app.post("/chatbotJoin", function(req, res){
 
