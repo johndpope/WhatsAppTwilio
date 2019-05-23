@@ -35,15 +35,14 @@ client.messages.create({
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
     twiml.message('Helloo you say: '); 
-    console.log("---------------------------------------------------------");
-    console.log(req.body);
-    console.log("SmsMessageSid "+req.body.SmsMessageSid);
-    console.log("From:" +req.body.From);
-    console.log("MessageSid "+req.body.MessageSid);
+    console.log("------------------------SEND MESSAGE------------------------");
+    console.log("SmsMessageSid: "+req.body.SmsMessageSid);
+    console.log("From: " +req.body.From);
+    console.log("MessageSid: "+req.body.MessageSid);
     var message = req.body.Body;
-    console.log("Message" + message);
-        twiml.message(message);    
-    console.log("-----------------------------------------------------------");
+    console.log("Message: " + message);
+    twiml.message(message);    
+    console.log("-------------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
   });
