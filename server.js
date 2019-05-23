@@ -27,7 +27,7 @@ client.messages
         body: 'Hello there!',
         to: 'whatsapp:+34626561876'
     })
-    .then(message => console.log(message.sid));
+    .then(message => console.log(message.sid + " " +message.body));
 /*var client = new twilio(accountSid, authToken);*/
 
 /*client.messages.create({
@@ -36,19 +36,10 @@ client.messages
     from: '+03468960' // From a valid Twilio number
 })
 .then((message) => console.log(message.sid));*/
-app.post('/callback', (req, res) => {
+app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
-  
     twiml.message('The Robots are coming! Head for the hills!');
-  
-    res.writeHead(200, {'Content-Type': 'text/xml'});
-    res.end(twiml.toString());
-  });
-  app.post('/', (req, res) => {
-    const twiml = new MessagingResponse();
-  
-    twiml.message('The Robots are coming! Head for the hillss!');
-  
+    console.log("Response ->" + twiml.message);
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
   });
