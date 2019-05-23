@@ -40,6 +40,8 @@ app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
     twiml.message('The Robots are coming! Head for the hills!');
     console.log("-----------------------------------------------------------------------------------------------------------------");
+    console.log(req.body);
+    console.log(req.Body);
     console.log(req.body.Body);
     console.log(req.body.From);  
     console.log("--------------------------------------------------------------------------------------------------------------");
