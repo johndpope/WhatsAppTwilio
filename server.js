@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var json = require('json');
 var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
@@ -44,8 +45,8 @@ app.post('/', (req, res) => {
     console.log(req.body);
     req.on('end', function() {
         var data = qs.parse(body);
-        var jsonString = JSON.stringify(data);  
-        var jsonDataObject = JSON.parse(jsonString);
+        var jsonString = json.stringify(data);  
+        var jsonDataObject = json.parse(jsonString);
     
         // log the received message
         console.log(jsonDataObject.Body);
@@ -56,7 +57,7 @@ app.post('/', (req, res) => {
   });
   app.post('/message', (req, res) => {
     console.log("$$-----------------------------------------------------------------------------------------------------------$$$");
-    console.log(req.body);
+    console.log(json.stringify(req));
     console.log(req.body.From);
     console.log(req.body.Body);
     console.log("$$$$-------------------------------------------------------------------------------------------------------------$$$");
