@@ -41,12 +41,14 @@ app.post('/', (req, res) => {
     twiml.message('The Robots are coming! Head for the hills!');
     console.log("-----------------------------------------------------------------------------------------------------------------");
     console.log(req.body);
-    console.log(req.Body);
-    console.log(req.body.Body);
-    console.log(req.From);  
-    console.log(req.from);
-    console.log(req.length);
-    console.log(res.length);
+    req.on('end', function() {
+        var data = qs.parse(body);
+        var jsonString = JSON.stringify(data);  
+        var jsonDataObject = JSON.parse(jsonString);
+    
+        // log the received message
+        console.log(jsonDataObject.Body);
+      });
     console.log("--------------------------------------------------------------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
