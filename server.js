@@ -19,7 +19,7 @@ var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8'; // Your Auth Token from www.
 app.set('port', process.env.PORT || 5000);
 console.log("Puerto de salida");
 const client = require('twilio')(accountSid, authToken);
-console.log("Twiliooooo");
+console.log("Twilio");
 client.messages
     .create({
         from: 'whatsapp:+14155238886',
@@ -36,7 +36,7 @@ client.messages
 })
 .then((message) => console.log(message.sid));*/
 
-app.post('/update', function(req, res) {
+app.post('/callback', function(req, res) {
     console.log("-----------------------------------------------");
     console.log(req);
     console.log("-----------------------------------------------");
