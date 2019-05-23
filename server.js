@@ -25,7 +25,7 @@ client.messages
     .create({
         from: 'whatsapp:+14155238886',
         body: 'Hello there!',
-        to: 'whatsapp:+34626561876'
+        to: 'whatsapp:+34689603272'
     })
     .then(message => console.log(message.sid + " " +message.body));
 /*var client = new twilio(accountSid, authToken);*/
