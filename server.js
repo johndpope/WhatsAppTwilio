@@ -39,7 +39,9 @@ client.messages
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
     twiml.message('The Robots are coming! Head for the hills!');
-    console.log("Response ->" + twiml.message);
+    console.log("--------------------------------------------------------------------------------------------------------------");
+    console.log("Response ->" + res);
+    console.log("--------------------------------------------------------------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
   });
