@@ -43,7 +43,10 @@ app.post('/', (req, res) => {
     console.log(req.body);
     console.log(req.Body);
     console.log(req.body.Body);
-    console.log(req.body.From);  
+    console.log(req.From);  
+    console.log(req.from);
+    console.log(req.length);
+    console.log(res.length);
     console.log("--------------------------------------------------------------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
