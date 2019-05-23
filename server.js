@@ -34,35 +34,15 @@ client.messages.create({
 
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
-    twiml.message('Helloo'); 
+    twiml.message('Helloo you say: '); 
     console.log("---------------------------------------------------------");
     console.log(req.body);
-    console.log("SmsMessageSid "+req.body.Body.SmsMessageSid);
-    console.log("From:" +req.body.Body.From);
-    console.log("MessageSid "+req.body.Body.MessageSid);
-    var message = req.body.Body.body;
+    console.log("SmsMessageSid "+req.body.SmsMessageSid);
+    console.log("From:" +req.body.From);
+    console.log("MessageSid "+req.body.MessageSid);
+    var message = req.body.Body;
     console.log("Message" + message);
-    if (message == ":)"){
-        twiml.message(':)');    
-    }else{
-        twiml.message(':(');
-    }
-    console.log("---------------------");
-    req.on('end', function() {
-        var data = qs.parse(body);
-        var jsonString = json.stringify(data);  
-        var jsonDataObject = json.parse(jsonString);
-        console.log("SmsMessageSid "+jsonDataObject.Body.SmsMessageSid);
-        console.log("From:" +jsonDataObject.Body.From);
-        console.log("MessageSid "+jsonDataObject.Body.MessageSid);
-        var message = jsonDataObject.Body.body;
-        console.log("Message" + message);
-        if (message == ":)"){
-            twiml.message(':)');    
-        }else{
-            twiml.message(':(');
-        }
-      });
+        twiml.message(message);    
     console.log("-----------------------------------------------------------");
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
