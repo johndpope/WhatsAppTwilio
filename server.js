@@ -9,7 +9,8 @@ var app = express();
 var apiai = require('apiai');
 var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
 
-
+var qs = require('qs');
+var assert = require('assert');
 
 
 app.use(express.static('public'));
