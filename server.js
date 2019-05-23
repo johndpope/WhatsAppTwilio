@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 var app = express();
 var apiai = require('apiai');
