@@ -35,7 +35,11 @@ client.messages
     from: '+03468960' // From a valid Twilio number
 })
 .then((message) => console.log(message.sid));*/
-
+exports.handler = function(context, event, callback) {
+    let twiml = new Twilio.twiml.MessagingResponse();
+    twiml.message("Hello World");
+    callback(null, twiml);
+};
 app.post('/callback', function(req, res) {
     console.log("-----------------------------------------------");
     console.log(req);
