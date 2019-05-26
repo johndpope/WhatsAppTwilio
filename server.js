@@ -36,7 +36,7 @@ function intervalFunc() {
        // queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId ';
         queryExec=queryExec+'';
         queryExec=queryExec+'';
-        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false and SA.Status="Dispatched"'
+        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false and SA.Status=\"Dispatched\"'
 
        
         conn.query(
