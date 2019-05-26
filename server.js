@@ -33,9 +33,10 @@ function intervalFunc() {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'Select SA.Subject, U.MobilePhone from ascendumfieldservice.ServiceAppointment SA left join ascendumfieldservice.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=0',
+            'Select SA.Subject, U.MobilePhone from ascendumfieldservice.ServiceAppointment SA left join ascendumfieldservice.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
             //'Select id from ascendumfieldservice.user',
             function(err, result) {
+                console.log("query executed");
                
                 if (err != null || result.rowCount == 0) {
                     console.log("Error query"+err);
