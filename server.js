@@ -33,8 +33,8 @@ function intervalFunc() {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            //'Select SA.Subject, U.MobilePhone from salesforce.ServiceAppointment SA left join salesforce.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join salesforce.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join salesforce.User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=false',
-            'Select id from ascendumfieldservice.user',
+            'Select SA.Subject, U.MobilePhone from ascendumfieldservice.ServiceAppointment SA left join ascendumfieldservice.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=false',
+            //'Select id from ascendumfieldservice.user',
             function(err, result) {
                
                 if (err != null || result.rowCount == 0) {
