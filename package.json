@@ -1,5 +1,5 @@
 {
-  "name": "WhastsApp Twilio Ascendum",
+  "name": "WhastsAppTwilioAscendum",
   "version": "0.0.91",
   "description": "Twilio Whatsapp for Ascendum",
   "main": "server.js",

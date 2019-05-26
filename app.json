@@ -1,5 +1,5 @@
 {
-  "name": "WhastsApp Twilio Ascendum",
+  "name": "WhastsAppTwilioAscendum",
   "description": "Twilio Whatsapp for Ascendum",
   "repository": "https://github.com/yogalnuri/WhatsAppTwilio",
   "success_url": "/setup.html",
