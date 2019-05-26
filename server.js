@@ -60,6 +60,7 @@ function intervalFunc() {
                 }else {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
+                       console.log('appointment-->'+appointment);
                         var visitDate = dateFormatterAT.format(appointment.SchedStartTime); 
                         var textMessage=appointment.salutation+' '+appointment.firstname+' '+appointment.lastname+' our Technician '+appointment.technician;
                         textMessage=textMessage+' will go to solve your issue in the asset '+appointment.assetname+' Model '+appointment.Model__c;
