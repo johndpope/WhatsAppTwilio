@@ -32,11 +32,12 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
+       /* var queryExec='Select SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  CAST(SA.Id AS CHARACTER)= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=CAST(SR.Id AS CHARACTER) ';
         queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER) ';
-        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '
+        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '*/
+        var queryExec='Select U.MobilePhone from ascendumfieldservice.ServiceResource SR left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER)'
 
        
         conn.query(
@@ -65,7 +66,7 @@ function intervalFunc() {
     });
 }
     
-//setInterval(intervalFunc, 15000);
+ setInterval(intervalFunc, 15000);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
