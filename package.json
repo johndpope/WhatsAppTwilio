@@ -1,7 +1,7 @@
 {
-  "name": "phone-change",
-  "version": "0.0.0",
-  "description": "Heroku Connect Sample App - Phone Change",
+  "name": "WhastsApp Twilio Ascendum",
+  "version": "0.0.91",
+  "description": "Twilio Whatsapp for Ascendum",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

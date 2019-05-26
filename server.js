@@ -32,7 +32,8 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.sfId, A.Name, SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone, SA.WhatsApp_Sent__c from  ascendumfieldservice.ServiceAppointment SA ';
+        var queryExec='Select SA.sfId, A.Name, SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone, SA.WhatsApp_Sent__c ';
+        var queryExec=' from  ascendumfieldservice.ServiceAppointment SA ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
@@ -52,16 +53,25 @@ function intervalFunc() {
                     console.log("Error query"+err);
                 }
                 else {
+                    console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
-                       console.log("formateando fecha");
                         var format = dateFormatterAT.format(appointment.SchedStartTime); 
-                        console.log("fechaformateada");
                         /*client.messages.create({
                             from: 'whatsapp:+14155238886',
                             body: 'You have an appointment with '+appointment.name +' on ' + format,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));*/
+                        var updatExcec='UPDATE ascendumfieldservice.ServiceAppointment SET WhatsApp_Sent__c = true where sfId='+appointment.sfId;
+                        con.query(updatExcec,
+                            function (err, result){ 
+                                if (err != null || result.rowCount == 0) {
+                                    console.log("Error query"+err);
+                                }else{
+                                    console.log("Records Updated");
+                                }
+                            }
+                        );
                    })
                     console.log(result.rows);
                    /* client.messages.create({
