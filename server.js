@@ -25,8 +25,10 @@ const client = require('twilio')(accountSid, authToken);
 
 
 console.log("Twilionn");
+console.log(process.env.DATABASE_URL);
 
 function intervalFunc() {
+    console.log(process.env.DATABASE_URL);
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
