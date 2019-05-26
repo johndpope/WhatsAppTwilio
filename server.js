@@ -63,7 +63,7 @@ function intervalFunc() {
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));*/
                         var updatExcec='UPDATE ascendumfieldservice.ServiceAppointment SET WhatsApp_Sent__c = true where sfId='+appointment.sfId;
-                        con.query(updatExcec,
+                        conn.query(updatExcec,
                             function (err, result){ 
                                 if (err != null || result.rowCount == 0) {
                                     console.log("Error query"+err);
