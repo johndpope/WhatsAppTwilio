@@ -57,6 +57,7 @@ function intervalFunc() {
                 }else {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
+                        console.log(result.rows);
                         var format = dateFormatterAT.format(appointment.SchedStartTime); 
                         /*client.messages.create({
                             from: 'whatsapp:+14155238886',
@@ -78,7 +79,7 @@ function intervalFunc() {
                             }
                         );
                    })
-                    console.log(result.rows);
+                    
                    /* client.messages.create({
                         from: 'whatsapp:+14155238886',
                         body: 'Hello there!',
