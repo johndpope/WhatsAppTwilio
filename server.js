@@ -4,7 +4,7 @@ var json = require('json');
 var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
-var intl =requier("intl");
+var intl =require("intl");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 var app = express();
