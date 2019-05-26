@@ -32,15 +32,15 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.AppointmentNumber, SA.Description from  ascendumfieldservice.ServiceAppointment SA ';
+        var queryExec='Select SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  CAST(SA.Id AS CHARACTER)= AR.ServiceAppointmentId ';
-        queryExec=queryExec+'';
-        queryExec=queryExec+'';
+        queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=CASET(SR.Id AS CHARACTER) ';
+        queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER) ';
         queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '
 
        
         conn.query(
-           // 'Select SA.Subject, U.MobilePhone from ascendumfieldservice.ServiceAppointment SA left join ascendumfieldservice.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
+           // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
             //'Select id from ascendumfieldservice.user',
             queryExec,
 
