@@ -1,7 +1,7 @@
 {
-  "name": "Phone Change",
-  "description": "Heroku Connect Sample App - Phone Change",
-  "repository": "https://github.com/yogalnuri/ChatbotJMG",
+  "name": "WebTwilio",
+  "description": "Twilio Whatsapp for Ascendum",
+  "repository": "https://github.com/yogalnuri/WhatsAppTwilio",
   "success_url": "/setup.html",
   "env": {
     "PGSSLMODE": {
