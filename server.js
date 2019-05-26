@@ -33,7 +33,7 @@ function intervalFunc() {
         // watch for any connect issues
         if (err) console.log(err);
         var queryExec='Select SA.AppointmentNumber, SA.Description from  ascendumfieldservice.ServiceAppointment SA ';
-        queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.Id= AR.ServiceAppointmentId ';
+        queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  CAST(SA.Id AS STRING)= AR.ServiceAppointmentId ';
         queryExec=queryExec+'';
         queryExec=queryExec+'';
         queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '
