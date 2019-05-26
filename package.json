@@ -1,6 +1,6 @@
 {
   "name": "WhastsAppTwilioAscendum",
-  "version": "0.0.91",
+  "version": "0.0.123",
   "description": "Twilio Whatsapp for Ascendum",
   "main": "server.js",
   "scripts": {
