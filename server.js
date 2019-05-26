@@ -41,7 +41,7 @@ function intervalFunc() {
                     console.log("Error query"+err);
                 }
                 else {
-                    var resultador=response.status(200).json(results.rows)
+                    var resultador=JSON.parse(result.rows);
                     console.log(resultador);
                    /* client.messages.create({
                         from: 'whatsapp:+14155238886',
