@@ -32,11 +32,12 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.Status, SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
+        var queryExec='Select A.Name,SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
+        queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
         queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= U.sfId ';
-        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '
+        queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false and status= \'Dispatched\' ';
 
        
         conn.query(
@@ -51,7 +52,14 @@ function intervalFunc() {
                     console.log("Error query"+err);
                 }
                 else {
-                   
+                   result.rows.forEach(function(appointment){
+                        client.messages.create({
+                            from: 'whatsapp:+14155238886',
+                            body: 'You have an appointment with '+appointment.Name,
+                            to: 'whatsapp:'+appointment.mobilephone
+                        })
+                        .then(message => console.log(message.sid + "  ----> " +message.body));
+                   })
                     console.log(result.rows);
                    /* client.messages.create({
                         from: 'whatsapp:+14155238886',
