@@ -4,6 +4,7 @@ var json = require('json');
 var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
+var intl =requier("intl");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 var app = express();
@@ -32,7 +33,7 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select A.Name,SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
+        var queryExec='Select Sa.sfId A.Name,SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone, SA.WhatsApp_Sent__c from  ascendumfieldservice.ServiceAppointment SA ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
@@ -53,6 +54,8 @@ function intervalFunc() {
                 }
                 else {
                    result.rows.forEach(function(appointment){
+                        var fec=appointment.SchedStartTime.toLocaleString();
+                       
                         /*client.messages.create({
                             from: 'whatsapp:+14155238886',
                             body: 'You have an appointment with '+appointment.name,
