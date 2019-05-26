@@ -32,12 +32,12 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.sfId, A.Name, C.FirstName, C.LastName, C.Salutation, C.MobilePhone, ASS.Model__c, ASS.SerialNumber, ASS.Name as AssetName, SA.Status, SA.SchedStartTime,' 
+        var queryExec='Select SA.sfId, A.Name, C.FirstName, C.LastName, C.Salutation, C.mobilephone, ASS.Model__c, ASS.SerialNumber, ASS.Name as AssetName, SA.Status, SA.SchedStartTime,' 
         queryExec=queryExec+'SA.AppointmentNumber, SA.Description, U.MobilePhone as ServiceResourceMobile, SA.WhatsApp_Sent__c, SR.Name as Technician ';
-        queryExec=queryExec+' from  ascendumfieldservice.ServiceAppointment SA ';
-        queryExec=queryExec+'left join ascendumfieldservice.Asset ASS ON  ASS.sfId= SA.Asset__c ';
+        queryExec=queryExec+' from  ascendumfieldservice.ServiceAppointment SA ';      
         queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  C.sfId= SA.ContactId ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
+        queryExec=queryExec+'left join ascendumfieldservice.Asset ASS ON  ASS.sfId= SA.Asset__c ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
         queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= U.sfId ';
