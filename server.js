@@ -33,7 +33,7 @@ function intervalFunc() {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'Select SA.Subject, U.MobilePhone from ServiceAppointment SA left join AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join ServiceResource SR ON AR.ServiceResourceId=SR.Id left join User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=false',
+            'Select SA.Subject, U.MobilePhone from salesforce.ServiceAppointment SA left join salesforce.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join salesforce.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join salesforce.User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=false',
             function(err, result) {
                
                 if (err != null || result.rowCount == 0) {
@@ -54,7 +54,7 @@ function intervalFunc() {
     });
 }
     
-//setInterval(intervalFunc, 1500);
+setInterval(intervalFunc, 1500);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
