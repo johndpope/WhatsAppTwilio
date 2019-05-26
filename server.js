@@ -34,7 +34,7 @@ function intervalFunc() {
         if (err) console.log(err);
         conn.query(
             //'Select SA.Subject, U.MobilePhone from salesforce.ServiceAppointment SA left join salesforce.AssignedResource AR ON  SA.Id=AR.ServiceAppointmentId left join salesforce.ServiceResource SR ON AR.ServiceResourceId=SR.Id left join salesforce.User U on SR.RelatedRecordId= U.Id Where SA.WhatsApp_Sent__c=false',
-            'Select id from salesforce.user',
+            'Select id from ascendumfieldservice.user',
             function(err, result) {
                
                 if (err != null || result.rowCount == 0) {
@@ -55,7 +55,7 @@ function intervalFunc() {
     });
 }
     
-//setInterval(intervalFunc, 1500);
+setInterval(intervalFunc, 15000);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
