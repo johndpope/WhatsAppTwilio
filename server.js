@@ -65,7 +65,7 @@ function intervalFunc() {
     });
 }
     
-setInterval(intervalFunc, 15000);
+//setInterval(intervalFunc, 15000);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
