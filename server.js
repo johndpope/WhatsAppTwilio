@@ -33,7 +33,7 @@ function intervalFunc() {
         // watch for any connect issues
         if (err) console.log(err);
         var queryExec='Select SA.sfId, A.Name, SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone, SA.WhatsApp_Sent__c ';
-        var queryExec=' from  ascendumfieldservice.ServiceAppointment SA ';
+        queryExec=queryExec+' from  ascendumfieldservice.ServiceAppointment SA ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
