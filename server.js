@@ -37,7 +37,7 @@ function intervalFunc() {
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=CAST(SR.Id AS CHARACTER) ';
         queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER) ';
         queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '*/
-        var queryExec='Select SR.Name,U.Name,U.MobilePhone from ascendumfieldservice.ServiceResource SR left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER)'
+        var queryExec='Select SR.Name,U.MobilePhone from ascendumfieldservice.ServiceResource SR left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER)'
 
        
         conn.query(
