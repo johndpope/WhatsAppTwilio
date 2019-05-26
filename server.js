@@ -26,10 +26,8 @@ const client = require('twilio')(accountSid, authToken);
 
 
 console.log("Twilionn");
-console.log(process.env.DATABASE_URL);
 
 function intervalFunc() {
-    console.log(process.env.DATABASE_URL);
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
@@ -54,14 +52,13 @@ function intervalFunc() {
                 }
                 else {
                    result.rows.forEach(function(appointment){
-                        var fec=appointment.SchedStartTime.toLocaleString();
-                       
-                        /*client.messages.create({
+                      
+                        client.messages.create({
                             from: 'whatsapp:+14155238886',
-                            body: 'You have an appointment with '+appointment.name,
+                            body: 'You have an appointment with '+appointment.name +' on ' + appointment.SchedStartTime,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
-                        .then(message => console.log(message.sid + "  ----> " +message.body));*/
+                        .then(message => console.log(message.sid + "  ----> " +message.body));
                    })
                     console.log(result.rows);
                    /* client.messages.create({
