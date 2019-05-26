@@ -49,10 +49,12 @@ function intervalFunc() {
             function(err, result) {
                 console.log("query executed");
                
-                if (err != null || result.rowCount == 0) {
-                    console.log("Error query"+err);
+                if (err != null ) {
+                    console.log("Error query-->"+err);
                 }
-                else {
+                else if (result.rowCount == 0){
+                    console.log("No WhatsApp To be sent");
+                }else {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
                         var format = dateFormatterAT.format(appointment.SchedStartTime); 
@@ -65,8 +67,10 @@ function intervalFunc() {
                         var updatExcec='UPDATE ascendumfieldservice.ServiceAppointment SET WhatsApp_Sent__c = true';// where sfId='+appointment.sfId;
                         conn.query(updatExcec,
                             function (err, result){ 
-                                if (err != null || result.rowCount == 0) {
-                                    console.log("Error query"+err);
+                                if (err != null || ) {
+                                    console.log("Error Update-->"+err);
+                                }else if(result.rowCount == 0){
+                                    console.log("No updated records");
                                 }else{
                                     console.log("Records Updated");
                                 }
