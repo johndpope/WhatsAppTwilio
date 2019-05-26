@@ -37,7 +37,7 @@ function intervalFunc() {
             function(err, result) {
                
                 if (err != null || result.rowCount == 0) {
-                    
+                    console.log("Error query"+err);
                 }
                 else {
                     var resultador=response.status(200).json(results.rows)
