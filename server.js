@@ -55,7 +55,7 @@ function intervalFunc() {
                    result.rows.forEach(function(appointment){
                         client.messages.create({
                             from: 'whatsapp:+14155238886',
-                            body: 'You have an appointment with '+appointment.Name,
+                            body: 'You have an appointment with '+appointment.name,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));
