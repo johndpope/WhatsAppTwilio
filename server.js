@@ -32,8 +32,11 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-        var queryExec='Select SA.sfId, A.Name, SA.Status, SA.SchedStartTime, SA.AppointmentNumber, SA.Description, U.MobilePhone, SA.WhatsApp_Sent__c ';
+        var queryExec='Select SA.sfId, A.Name, C.FristName, C.LastName, C.Salutation, C.MobilePhone, AS.Model__c, AS.SerialNumber, AS.Name as AssetName, SA.Status, SA.SchedStartTime,' 
+        queryExec=queryExec+'SA.AppointmentNumber, SA.Description, U.MobilePhone as ServiceResourceMobile, SA.WhatsApp_Sent__c, SR.Name as Technician ';
         queryExec=queryExec+' from  ascendumfieldservice.ServiceAppointment SA ';
+        queryExec=queryExec+'left join ascendumfieldservice.Asset AS ON  AS.sfId= SA.Asset__c ';
+        queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  C.sfId= SA.ContactId ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
         queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
@@ -57,10 +60,14 @@ function intervalFunc() {
                 }else {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
-                        var format = dateFormatterAT.format(appointment.SchedStartTime); 
+                        var visitDate = dateFormatterAT.format(appointment.SchedStartTime); 
+                        var textMessage=appointment.salutation+' '+appointment.firstname+' '+appointment.lastname+' Our Technician '+appointment.technician;
+                        textMessage=textMessage+' will go to solve your issue in the asset '+appointment.assetname+' Model '+appointment.Model__c;
+                        textMessage=textMessage+' with Serial Number '+ appointment.SerialNumber +' the next '+visitDate+'. His mobile phone to contact with him is '+appointment.serviceresourcemobile;
+                        console.log(textMessage);
                         /*client.messages.create({
                             from: 'whatsapp:+14155238886',
-                            body: 'You have an appointment with '+appointment.name +' on ' + format,
+                            body: textMessage,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));*/
