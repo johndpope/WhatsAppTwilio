@@ -32,13 +32,11 @@ function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
-       /* var queryExec='Select SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
-        queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  CAST(SA.Id AS CHARACTER)= AR.ServiceAppointmentId ';
-        queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=CAST(SR.Id AS CHARACTER) ';
-        queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER) ';
+       /* var queryExec='Select SA.Dispatched, SA.AppointmentNumber, SA.Description, U.MobilePhone from  ascendumfieldservice.ServiceAppointment SA ';
+        queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
+        queryExec=queryExec+'left join ascendumfieldservice.ServiceResource SR ON AR.ServiceResourceId=SR.sfId ';
+        queryExec=queryExec+'left join ascendumfieldservice.User U on SR.RelatedRecordId= U.sfId ';
         queryExec=queryExec+ 'where SA.WhatsApp_Sent__c=false '*/
-        //var queryExec='Select SR.Name,U.MobilePhone, SR.RelatedRecordId, U.Id  as i from ascendumfieldservice.ServiceResource SR left join ascendumfieldservice.User U on SR.RelatedRecordId= CAST(U.Id AS CHARACTER)'
-        var queryExec ='Select * from ascendumfieldservice.User';
 
        
         conn.query(
