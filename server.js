@@ -56,12 +56,12 @@ function intervalFunc() {
                        console.log("formateando fecha");
                         var format = dateFormatterAT.format(appointment.SchedStartTime); 
                         console.log("fechaformateada");
-                        client.messages.create({
+                        /*client.messages.create({
                             from: 'whatsapp:+14155238886',
                             body: 'You have an appointment with '+appointment.name +' on ' + format,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
-                        .then(message => console.log(message.sid + "  ----> " +message.body));
+                        .then(message => console.log(message.sid + "  ----> " +message.body));*/
                    })
                     console.log(result.rows);
                    /* client.messages.create({
