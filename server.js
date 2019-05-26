@@ -61,16 +61,16 @@ function intervalFunc() {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
                         var visitDate = dateFormatterAT.format(appointment.SchedStartTime); 
-                        var textMessage=appointment.salutation+' '+appointment.firstname+' '+appointment.lastname+' Our Technician '+appointment.technician;
+                        var textMessage=appointment.salutation+' '+appointment.firstname+' '+appointment.lastname+' our Technician '+appointment.technician;
                         textMessage=textMessage+' will go to solve your issue in the asset '+appointment.assetname+' Model '+appointment.Model__c;
                         textMessage=textMessage+' with Serial Number '+ appointment.SerialNumber +' the next '+visitDate+'. His mobile phone to contact with him is '+appointment.serviceresourcemobile;
                         console.log(textMessage);
-                        /*client.messages.create({
+                        client.messages.create({
                             from: 'whatsapp:+14155238886',
                             body: textMessage,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
-                        .then(message => console.log(message.sid + "  ----> " +message.body));*/
+                        .then(message => console.log(message.sid + "  ----> " +message.body));
                         var updatExcec='UPDATE ascendumfieldservice.ServiceAppointment SET WhatsApp_Sent__c = true Where sfId=\''+appointment.sfid+'\'';
                         console.log(updatExcec);
                         conn.query(updatExcec,
