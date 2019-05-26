@@ -57,7 +57,6 @@ function intervalFunc() {
                 }else {
                     console.log("Returned record-->"+result.rowCount);
                    result.rows.forEach(function(appointment){
-                        console.log(result.rows);
                         var format = dateFormatterAT.format(appointment.SchedStartTime); 
                         /*client.messages.create({
                             from: 'whatsapp:+14155238886',
@@ -65,6 +64,7 @@ function intervalFunc() {
                             to: 'whatsapp:'+appointment.mobilephone
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));*/
+                        console.log(appointment);
                         var updatExcec='UPDATE ascendumfieldservice.ServiceAppointment SET WhatsApp_Sent__c = true Where sfId=\''+appointment.sfId+'\'';
                         console.log(updatExcec);
                         conn.query(updatExcec,
