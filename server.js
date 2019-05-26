@@ -35,7 +35,7 @@ function intervalFunc() {
         var queryExec='Select SA.sfId, A.Name, C.FristName, C.LastName, C.Salutation, C.MobilePhone, ASS.Model__c, ASS.SerialNumber, ASS.Name as AssetName, SA.Status, SA.SchedStartTime,' 
         queryExec=queryExec+'SA.AppointmentNumber, SA.Description, U.MobilePhone as ServiceResourceMobile, SA.WhatsApp_Sent__c, SR.Name as Technician ';
         queryExec=queryExec+' from  ascendumfieldservice.ServiceAppointment SA ';
-        queryExec=queryExec+'left join ascendumfieldservice.Asset ASS ON  AS.sfId= SA.Asset__c ';
+        queryExec=queryExec+'left join ascendumfieldservice.Asset ASS ON  ASS.sfId= SA.Asset__c ';
         queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  C.sfId= SA.ContactId ';
         queryExec=queryExec+'left join ascendumfieldservice.Account A ON  A.sfId= SA.AccountId ';
         queryExec=queryExec+'left join ascendumfieldservice.AssignedResource AR ON  SA.sfId= AR.ServiceAppointmentId ';
