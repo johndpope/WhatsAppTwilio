@@ -5,6 +5,7 @@ var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
 var intl =require("intl");
+const dateFormatterAT = new Intl.DateTimeFormat("es-ES");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 var app = express();
@@ -52,10 +53,12 @@ function intervalFunc() {
                 }
                 else {
                    result.rows.forEach(function(appointment){
-                      
+                       console.log("formateando fecha");
+                        var format = dateFormatterAT.format(appointment.SchedStartTime); 
+                        console.log("fechaformateada");
                         client.messages.create({
                             from: 'whatsapp:+14155238886',
-                            body: 'You have an appointment with '+appointment.name +' on ' + appointment.SchedStartTime,
+                            body: 'You have an appointment with '+appointment.name +' on ' + format,
                             to: 'whatsapp:'+appointment.mobilephone
                         })
                         .then(message => console.log(message.sid + "  ----> " +message.body));
@@ -73,7 +76,7 @@ function intervalFunc() {
     });
 }
     
- setInterval(intervalFunc, 15000);
+setInterval(intervalFunc, 15000);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
     const twiml = new MessagingResponse();
