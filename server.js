@@ -63,7 +63,7 @@ function intervalFunc() {
                        console.log('appointment-->'+JSON.stringify(appointment));
                         var visitDate = dateFormatterAT.format(appointment.SchedStartTime); 
                         var textMessage=appointment.salutation+' '+appointment.firstname+' '+appointment.lastname+' our Technician '+appointment.technician;
-                        textMessage=textMessage+' will go to solve your issue in the asset '+appointment.assetname+' Model '+appointment.Model__c;
+                        textMessage=textMessage+' will go to solve your issue in the asset '+appointment.assetname;//+' Model '+appointment.Model__c;
                         textMessage=textMessage+' with Serial Number '+ appointment.SerialNumber +' the next '+visitDate+'. His mobile phone to contact with him is '+appointment.serviceresourcemobile;
                         console.log(textMessage);
                         client.messages.create({
