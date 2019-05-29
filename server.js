@@ -126,7 +126,7 @@ app.post('/', (req, res) => {
                     result.rows.forEach(function(accountContact){
                         console.log(accountContact.accountid);
                         console.log(accountContact.contactid);
-                        conn.query('INSERT INTO ascendumfieldservice.Case (RecordTypeId,AccountId, ContactId, Subject, Origin, Priority, Description, Status, Reason) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+                        conn.query('INSERT INTO ascendumfieldservice.Case (RecordTypeId,AccountId, ContactId, Subject, Origin, Priority, Description, Status, Reason) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
                          ['0123E000000oa6LQAQ',accountContact.accountid, accountContact.contactid,	'Inquiry on Invoice', 'Whatsapp','Medium',req.body.Body, 'New','Inquiry on Invoice'],
                          function(err, result) {
                            // done();
