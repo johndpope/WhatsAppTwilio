@@ -110,12 +110,13 @@ app.post('/', (req, res) => {
         queryExec=queryExec+' from  ascendumfieldservice.Account A ';      
         queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  A.sfId= c.AccountId ';
         queryExec=queryExec+ 'where MobilePhone = '+req.body.From;
+        console.log(queryExec);
         conn.query(
             // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
              //'Select id from ascendumfieldservice.user',
              queryExec, function(err, result) {
                 if (err != null ) {
-                    console.log("Error query-->"+err);
+                    console.log("Error query Select account Contact-->"+err);
                 }else if (result.rowCount == 0){
                     console.log("No WhatsApp To be sent");
                     const twiml = new MessagingResponse();
