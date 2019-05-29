@@ -102,20 +102,51 @@ function intervalFunc() {
 setInterval(intervalFunc, 15000);
 app.set('port', process.env.PORT || 5000);
 app.post('/', (req, res) => {
-    const twiml = new MessagingResponse();
-    twiml.message('Helloo you say: '); 
-    console.log("------------------------SEND MESSAGE------------------------");
-    console.log("SmsMessageSid: "+req.body.SmsMessageSid);
-    console.log("From: " +req.body.From);
-    console.log("MessageSid: "+req.body.MessageSid);
-    var message = req.body.Body;
-    console.log("Message: " + message);
-    twiml.message(message);    
-    console.log("-------------------------------------------------------------");
-    res.writeHead(200, {'Content-Type': 'text/xml'});
-    res.end(twiml.toString());
-  });
+    pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
+        // watch for any connect issues
+        if (err) console.log(err);
+        var queryExec='Select A.sfId AccountId, c.sfId ContactId' 
+        queryExec=queryExec+'SA.AppointmentNumber, SA.Description, U.MobilePhone as ServiceResourceMobile, SA.WhatsApp_Sent__c, SR.Name as Technician ';
+        queryExec=queryExec+' from  ascendumfieldservice.Account A ';      
+        queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  A.sfId= c.AccountId ';
+        queryExec=queryExec+ 'where MobilePhone = '+req.body.From;
+        conn.query(
+            // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
+             //'Select id from ascendumfieldservice.user',
+             queryExec, function(err, result) {
+                if (err != null ) {
+                    console.log("Error query-->"+err);
+                }else if (result.rowCount == 0){
+                    console.log("No WhatsApp To be sent");
+                    const twiml = new MessagingResponse();
+                    twiml.message('It\'s impossible to register a new case. You aren\'t register in our system');    
+                    res.writeHead(200, {'Content-Type': 'text/xml'});
+                    res.end(twiml.toString());
+                }else {
+                    result.rows.forEach(function(accountContact){
+                        conn.query('INSERT INTO salesforce.Case (RecordTypeId,AccountId, ContactId, Subject, Origin, Priority,Description) VALUES ($1, $2, $3, $4, $5, $6,$7)',
+                         ['0123E000000oa6LQAQ',accountContact.AccountId, accountContact.ContactId,	'Inquiry on Invoice', 'Phone','Medium',req.body.From],
+                         function(err, result) {
+                           // done();
+                            if (err) {
+                                const twiml = new MessagingResponse();
+                                twiml.message('It\'s impossible to register a new case');    
+                                res.writeHead(200, {'Content-Type': 'text/xml'});
+                                res.end(twiml.toString());
+                            }
+                            else {
+                                const twiml = new MessagingResponse();
+                                twiml.message('Case created');    
+                                res.writeHead(200, {'Content-Type': 'text/xml'});
+                                res.end(twiml.toString());
+                            }
+                          })
+                    });                    
+                }
 
+        });
+	});
+});
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
