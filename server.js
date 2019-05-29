@@ -138,10 +138,7 @@ app.post('/', (req, res) => {
                                 res.end(twiml.toString());
                             }
                             else {
-                                console.log(res.json(result));
-                                result.rows.forEach(function(ecahInsert){
-                                    console.log(ecahInsert);
-                                })
+                                console.log('Result Insert-->'+res.json(result));
                                 const twiml = new MessagingResponse();
                                 twiml.message('Case created');    
                                 res.writeHead(200, {'Content-Type': 'text/xml'});
