@@ -138,6 +138,21 @@ app.post('/', (req, res) => {
                                 res.end(twiml.toString());
                             }
                             else {
+                                var queryExec='Select CaseNumber' 
+                                queryExec=queryExec+' from  ascendumfieldservice.Case ';      
+                                queryExec=queryExec+ 'where LastChange=\'Inserted\'';
+                                conn.query(
+                                    // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
+                                     //'Select id from ascendumfieldservice.user',
+                                     queryExec, function(err, result) {
+                                        if (err != null ) {
+                                            console.log("Error query Select Case-->"+err);
+                                        }else if (result.rowCount == 0){
+                                         }else {
+
+                                         }
+
+                                })
                                 console.log(JSON.stringify(result));
                                 console.log(JSON.stringify(result.rows[0]));
                                 const twiml = new MessagingResponse();
