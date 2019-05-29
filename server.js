@@ -130,6 +130,7 @@ app.post('/', (req, res) => {
                          function(err, result) {
                            // done();
                             if (err) {
+                                console.log(err);
                                 const twiml = new MessagingResponse();
                                 twiml.message('It\'s impossible to register a new case');    
                                 res.writeHead(200, {'Content-Type': 'text/xml'});
