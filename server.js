@@ -138,6 +138,7 @@ app.post('/', (req, res) => {
                                 res.end(twiml.toString());
                             }
                             else {
+                                console.log(result.rows);
                                 const twiml = new MessagingResponse();
                                 twiml.message('Case created');    
                                 res.writeHead(200, {'Content-Type': 'text/xml'});
