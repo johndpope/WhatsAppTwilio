@@ -124,9 +124,10 @@ app.post('/', (req, res) => {
                     res.end(twiml.toString());
                 }else {
                     result.rows.forEach(function(accountContact){
-                        console.log(accountContact);
+                        console.log(accountContact.AccountId);
+                        console.log(accountContact.ContactId);
                         conn.query('INSERT INTO ascendumfieldservice.Case (RecordTypeId,AccountId, ContactId, Subject, Origin, Priority, Description, Status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
-                         ['0123E000000oa6LQAQ',accountContact.AccountId, accountContact.ContactId,	'Inquiry on Invoice', 'Phone','Medium',req.body.From, 'New'],
+                         ['0123E000000oa6LQAQ',accountContact.AccountId, accountContact.ContactId,	'Inquiry on Invoice', 'Phone','Medium',req.body.Body, 'New'],
                          function(err, result) {
                            // done();
                             if (err) {
