@@ -141,7 +141,7 @@ app.post('/', (req, res) => {
                                 var queryExec='Select CaseNumber' 
                                 queryExec=queryExec+' from  ascendumfieldservice.Case ';      
                                 queryExec=queryExec+ 'where LastChange=\'Inserted\'';
-                                conn.query(
+                                /*conn.query(
                                     // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
                                      //'Select id from ascendumfieldservice.user',
                                      queryExec, function(err, result) {
@@ -152,7 +152,7 @@ app.post('/', (req, res) => {
 
                                          }
 
-                                })
+                                })*/
                                 console.log(JSON.stringify(result));
                                 console.log(JSON.stringify(result.rows[0]));
                                 const twiml = new MessagingResponse();
