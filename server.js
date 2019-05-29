@@ -108,7 +108,7 @@ app.post('/', (req, res) => {
         var queryExec='Select A.sfId AccountId, c.sfId ContactId' 
         queryExec=queryExec+' from  ascendumfieldservice.Account A ';      
         queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  A.sfId= c.AccountId ';
-        queryExec=queryExec+ 'where MobilePhone = '+req.body.From;
+        queryExec=queryExec+ 'where MobilePhone = \''+req.body.From.replace(" whatsapp:","")+'\'';
         console.log(queryExec);
         conn.query(
             // 'Select SA.Subject, U.MobilePhone from   left join ascendumfieldservice.User U on SR.RelatedRecordId= U.Id',
