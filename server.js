@@ -138,6 +138,7 @@ app.post('/', (req, res) => {
                                 res.end(twiml.toString());
                             }
                             else {
+                                console.log(res.json(result));
                                 result.rows.forEach(function(ecahInsert){
                                     console.log(ecahInsert);
                                 })
