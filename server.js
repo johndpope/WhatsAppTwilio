@@ -106,7 +106,6 @@ app.post('/', (req, res) => {
         // watch for any connect issues
         if (err) console.log(err);
         var queryExec='Select A.sfId AccountId, c.sfId ContactId' 
-        queryExec=queryExec+'SA.AppointmentNumber, SA.Description, U.MobilePhone as ServiceResourceMobile, SA.WhatsApp_Sent__c, SR.Name as Technician ';
         queryExec=queryExec+' from  ascendumfieldservice.Account A ';      
         queryExec=queryExec+'left join ascendumfieldservice.Contact C ON  A.sfId= c.AccountId ';
         queryExec=queryExec+ 'where MobilePhone = '+req.body.From;
