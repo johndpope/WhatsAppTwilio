@@ -35,13 +35,13 @@ app.use(bodyParser.json());
 
  
 var ee = new EventEmitter()
-ee.on('Account', intervalFunc(text))
+ee.on('Account', function (text) {
+  console.log(text)
+})
 
 console.log("Twilionn");
 
-function intervalFunc(text) {
-    console.log(text);
-    /*
+function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
         // watch for any connect issues
         if (err) console.log(err);
@@ -100,16 +100,16 @@ function intervalFunc(text) {
                         );
                    })
                     
-                    client.messages.create({
+                   /* client.messages.create({
                         from: 'whatsapp:+14155238886',
                         body: 'Hello there!',
                         to: 'whatsapp:+34626561876'
                     })
-                    .then(message => console.log(message.sid + "  ----> " +message.body));
+                    .then(message => console.log(message.sid + "  ----> " +message.body));*/
                 }
             }
         );
-    });*/
+    });
 }
     
 setInterval(intervalFunc, 15000);
