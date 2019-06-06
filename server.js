@@ -4,27 +4,40 @@ var json = require('json');
 var pg = require('pg');
 var http = require('http');
 var twilio = require('twilio');
-var intl =require("intl");
-const dateFormatterAT = new Intl.DateTimeFormat("es-ES");
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
-var app = express();
+var intl =require("intl");
+var EventEmitter = require('events');
 var apiai = require('apiai');
-var apiapp = apiai("d2aa27c7939543549982acb558ef8796");
-
 var qs = require('qs');
 var assert = require('assert');
+var EventEmitter = require('events');
+var accountSid = process.env.Twilio_accountSid; // Your Account SID from www.twilio.com/console
+var authToken = process.env.Twilio_authToken; // Your Auth Token from www.twilio.com/console
+
+const client = require('twilio')(accountSid, authToken);
+
+const dateFormatterAT = new Intl.DateTimeFormat("es-ES");
+
+
+var app = express();
+
+var apiapp = apiai(process.env.apiai_Token);
+
+
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-var accountSid = 'AC67968749065aa4c24a598fb476e3ee1e'; // Your Account SID from www.twilio.com/console
-var authToken = 'b1993d51e0dfeff9bf683e82b870f5e8'; // Your Auth Token from www.twilio.com/console
-
-const client = require('twilio')(accountSid, authToken);
 
 
+
+
+ 
+var ee = new EventEmitter()
+ee.on('event', function (text) {
+  console.log(text)
+})
 
 console.log("Twilionn");
 
