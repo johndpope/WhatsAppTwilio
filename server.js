@@ -36,7 +36,7 @@ app.use(bodyParser.json());
  
 var ee = new EventEmitter()
 ee.on('Account', function (text) {
-  console.log(text)
+  console.log('Que narices hag0-->'+text)
 })
 
 console.log("Twilionn");
