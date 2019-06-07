@@ -36,29 +36,22 @@ app.use(bodyParser.json());
 
 
 
-<<<<<<< HEAD
 pg.on('notice', (msg) => console.warn('notice:', msg))
  
-=======
-
-<<
-<< << < HEAD
 
 
->>>>>>> 37d3f7c2592b2384cfa8222ef4b55d30c92233c3
+
 var ee = new EventEmitter()
 ee.on('message', function (text) {
         console.log(text)
-    }) ===
-    === =
+    });
 
     var ee = new EventEmitter()
 ee.on('Account', function (text) {
     console.log('Que narices hag0-->' + text)
 })
 
-console.log("Twilionn"); >>>
->>> > 2e6961 c9018950e1b64a21fd4fd56c56e0f056a0
+console.log("Twilionn"); 
 
 function intervalFunc() {
     pg.connect(process.env.DATABASE_URL, function (err, conn, done) {
