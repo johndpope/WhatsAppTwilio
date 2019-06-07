@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 
 
 
-
+pg.on('notice', (msg) => console.warn('notice:', msg))
  
 var ee = new EventEmitter()
 ee.on('Account', function (text) {
