@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 
 
-pg.on('notice', (msg) => console.warn('notice:', msg))
+//pg.on('notice', (msg) => console.warn('notice:', msg))
  
 
 
